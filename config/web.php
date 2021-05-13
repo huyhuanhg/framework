@@ -23,7 +23,7 @@ return [
     '__WEB_ROOT__' => webRoot(),
     '__NSP_CTRL__'=>'app\http\controllers',
     '__NSP_ADMIN_CTRL__'=>'app\http\controllers\admin',
-    'layouts' => 'layouts/main',
+    'layout' => 'layouts/clients',
     "fileDefault" => [
         'routes/routers.php'
     ]

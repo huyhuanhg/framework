@@ -76,9 +76,9 @@ class Router
                 die('<h1>loi</h1>');
             }
             if (class_exists($className) && method_exists($className, $methodName)) {
-                $object = new $className;
                 Registry::getIntance()->controller = reset($ctl);
                 Registry::getIntance()->action = $methodName;
+                $object = new $className;
                 call_user_func_array([$object, $methodName], $param);
             } else {
 //                throw new AppException("$className hoặc $methodName() không tồn tại!");
