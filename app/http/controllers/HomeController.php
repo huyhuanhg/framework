@@ -8,9 +8,11 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        echo "home controller<br>";
+        parent::__construct();
     }
     public function index(){
-        echo __METHOD__;
+        echo __METHOD__.'<br>';
+//        $this->renderPartial('test');
+        $this->render('index');
     }
 }

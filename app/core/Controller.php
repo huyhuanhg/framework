@@ -7,16 +7,19 @@ use \App;
 class Controller
 {
     private $layout = null;
-    private $config;
+
     public function __construct()
     {
-        $this->config = Registry::getIntance()->config;
-        $this->layout = $this->config['layout'];
+        if (isset(Registry::getIntance()->web['layout'])) {
+            $this->layout = Registry::getIntance()->web['layout'];
+        } else {
+            echo "layout khong ton tai<br>";
+        }
     }
 
     public function setLayout($layout)
     {
-        $this->layout = $layout;
+        return $this->layout = 'layouts/' . $layout;
     }
 
     /**
@@ -32,12 +35,14 @@ class Controller
         }
     }
 
-    public function render($viewFile, $data = null)
+    public function render($viewFile, $data = null, $layout = null)
     {
-        $rootDir = $this->config['rootDir'];
+        if (isset($layout)){
+            $this->setLayout($layout);
+        }
         $viewContent = $this->getViewContent($viewFile, $data);
         if ($this->layout !== null) {
-            $layoutPath = $rootDir . '/app/views/' . $this->layout . '.php';
+            $layoutPath = __DIR_ROOT__ . '/app/views/' . $this->layout . '.php';
             if (file_exists($layoutPath)) {
                 require_once($layoutPath);
             }
@@ -47,8 +52,7 @@ class Controller
     public function getViewContent($viewFile, $data = null)
     {
         $viewFolder = strtolower(str_replace('Controller', '', Registry::getIntance()->controller));
-        $rootDir = $this->config['rootDir'];
-        $viewPath = $rootDir . '/app/views/' . $viewFolder . '/' . $viewFile . '.php';
+        $viewPath = __DIR_ROOT__ . '/app/views/' . $viewFolder . '/' . $viewFile . '.php';
         if (is_array($data)) {
             extract($data, EXTR_PREFIX_SAME, 'data');
         } else {
@@ -63,8 +67,7 @@ class Controller
 
     public function renderPartial($view, $data = null)
     {
-        $rootDir = $this->config['rootDir'];
-        $viewPath = $rootDir . '/app/views/' . $view . '.php';
+        $viewPath = __DIR_ROOT__ . '/app/views/' . $view . '.php';
         if (is_array($data)) {
             extract($data, EXTR_PREFIX_SAME, 'data');
         } else {
