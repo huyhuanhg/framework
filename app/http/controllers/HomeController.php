@@ -12,6 +12,7 @@ class HomeController extends Controller
     }
     public function index(){
         echo __METHOD__.'<br>';
-        $this->renderPartial('index');
+//        $this->renderPartial('test');
+        $this->render('index');
     }
 }
