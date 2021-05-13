@@ -7,9 +7,11 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        echo "user controller<br/>";
+        parent::__construct();
+//        echo "user controller<br/>";
     }
     public function index(){
-        echo __METHOD__;
+        echo __METHOD__.'<br>';
+        $this->render('index', null, 'admin/main');
     }
 }
