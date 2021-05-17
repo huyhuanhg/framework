@@ -21,10 +21,9 @@ return [
     '__BASE_PATH__' => str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR_PUBLIC__),
     "__DIR_ROOT__" => dirname(__DIR__),
     '__WEB_ROOT__' => webRoot(),
-    '__NSP_CTRL__'=>'app\http\controllers',
-    '__NSP_ADMIN_CTRL__'=>'app\http\controllers\admin',
+    '__NAMESPACE_CTRL__'=>'app\http\controllers',
     'layout' => 'layouts/clients/main',
     "fileDefault" => [
-        'routes/routers.php'
+        'routes/routers.php',
     ]
 ];

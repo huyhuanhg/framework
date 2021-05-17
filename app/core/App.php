@@ -13,10 +13,10 @@ class App
     {
         global $config;
         new Autoload($config['web']['fileDefault']);
-        $this->router = new Router();
         foreach ($config as $item => $value) {
             Registry::getIntance()->$item = $value;
         }
+        $this->router = new Router();
         $this->router->run();
     }
 
@@ -25,4 +25,3 @@ class App
         new App();
     }
 }
-

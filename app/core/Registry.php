@@ -30,9 +30,9 @@ class Registry
         return null;
     }
 
-    public function __set($name, $value)
+    public function __set($name, $value = null)
     {
-        if (!isset($this->storage[$name])) {
+        if (!isset($this->storage[$name]) && isset($value)) {
             $this->storage[$name] = $value;
         }
     }
