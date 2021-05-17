@@ -1,6 +1,8 @@
 <?php
 
 
+use app\Exceptions\AppException as E;
+
 class Autoload
 {
 
@@ -19,9 +21,7 @@ class Autoload
         if (file_exists($filePath)) {
             require_once($filePath);
         } else {
-//            throw new AppException("$filePath không tồn tại!");
-            echo "loi load auto<br/>";
-            echo $class;
+            throw new E("$filePath không tồn tại!");
         }
     }
 
@@ -31,8 +31,7 @@ class Autoload
             if (file_exists(__DIR_ROOT__ . '/' . $file)) {
                 require_once(__DIR_ROOT__ . '/' . $file);
             } else {
-//            throw new AppException("$filePath không tồn tại!");
-                echo "loi load default";
+            throw new E("$file không tồn tại!");
             }
         }
     }
